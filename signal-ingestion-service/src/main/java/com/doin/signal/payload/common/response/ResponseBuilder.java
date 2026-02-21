@@ -1,4 +1,4 @@
-package com.doin.signal.payload.response;
+package com.doin.signal.payload.common.response;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

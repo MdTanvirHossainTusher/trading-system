@@ -1,9 +1,9 @@
 package com.doin.signal.exception;
 
 
-import com.doin.signal.payload.response.ApiResponse;
-import com.doin.signal.payload.response.ErrorDetail;
-import com.doin.signal.payload.response.ResponseBuilder;
+import com.doin.signal.payload.common.response.ApiResponse;
+import com.doin.signal.payload.common.response.ErrorDetail;
+import com.doin.signal.payload.common.response.ResponseBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

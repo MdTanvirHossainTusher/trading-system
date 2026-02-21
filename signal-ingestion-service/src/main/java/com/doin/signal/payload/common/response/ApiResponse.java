@@ -1,6 +1,5 @@
-package com.doin.signal.payload.response;
+package com.doin.signal.payload.common.response;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
