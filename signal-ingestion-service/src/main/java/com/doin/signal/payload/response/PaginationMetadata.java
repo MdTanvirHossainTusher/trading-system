@@ -1,4 +1,4 @@
-package com.sisimpur.library.payload.common.response;
+package com.doin.signal.payload.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

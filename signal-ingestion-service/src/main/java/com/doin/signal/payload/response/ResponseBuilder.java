@@ -1,4 +1,4 @@
-package com.sisimpur.library.payload.common.response;
+package com.doin.signal.payload.response;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,8 +9,6 @@ import java.util.List;
 public final class ResponseBuilder {
 
     private ResponseBuilder() {}
-
-    // ========== Success Response Methods ==========
     
     public static <T> ResponseEntity<ApiResponse<T>> ok() {
         return success(HttpStatus.OK, "Operation successful", null);
@@ -43,8 +41,6 @@ public final class ResponseBuilder {
         
         return ResponseEntity.status(status).body(response);
     }
-
-    // ========== Error Response Methods ==========
     
     public static <T> ResponseEntity<ApiResponse<T>> error(HttpStatus status, String message) {
         return error(status, message, "ERROR");
@@ -74,8 +70,6 @@ public final class ResponseBuilder {
     public static <T> ResponseEntity<ApiResponse<T>> validationError(List<ErrorDetail> errors) {
         return error(HttpStatus.UNPROCESSABLE_ENTITY, errors);
     }
-
-    // ========== Helper Methods ==========
     
     private static String extractPrimaryMessage(List<ErrorDetail> errors) {
         if (errors == null || errors.isEmpty()) {

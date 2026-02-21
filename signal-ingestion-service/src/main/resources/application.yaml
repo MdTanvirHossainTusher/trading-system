@@ -1,3 +1,48 @@
 spring:
   application:
     name: signal-ingestion-service
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/trading_db}
+    username: ${SPRING_DATASOURCE_USERNAME:tusher}
+    password: ${SPRING_DATASOURCE_PASSWORD:tusher}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+
+kafka:
+  topics:
+    raw-signals: trading.signals.raw
+
+jwt:
+  secret: ${JWT_SECRET:dffffffffgdasrere432523432SWerewtrrqwe213124325rsdftgggggg123455}
+  expiration-ms: 86400000        # 24 hours
+  refresh-expiration-ms: 604800000  # 7 days
+
+#logging:
+#  level:
+#    com.doin: DEBUG
+#    org.springframework.security: INFO
+
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /api/v1
