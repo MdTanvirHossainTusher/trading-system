@@ -13,4 +13,6 @@ import lombok.NoArgsConstructor;
 public class WebhookRequest {
     @NotBlank(message = "Signal message is required")
     private String message;
+
+    private String clientSignalId;
 }
