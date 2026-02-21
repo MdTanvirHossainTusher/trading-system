@@ -1,12 +1,13 @@
 package com.doin.signal.model;
 
+import com.doin.signal.constant.db.DbConstant;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "broker_accounts")
+@Table(name = DbConstant.DbBrokerAccount.TABLE_NAME)
 @Getter
 @Setter
 @Builder
@@ -38,7 +39,7 @@ public class BrokerAccount {
     @Builder.Default
     private Boolean active = true;
 
-    @Column(name = "created_at")
+    @Column(name = DbConstant.DbCommon.CREATED_AT)
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 

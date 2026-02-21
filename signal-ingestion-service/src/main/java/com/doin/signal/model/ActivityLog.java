@@ -1,12 +1,13 @@
 package com.doin.signal.model;
 
+import com.doin.signal.constant.db.DbConstant;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "activity_logs")
+@Table(name = DbConstant.DbActivityLog.TABLE_NAME)
 @Getter
 @Setter
 @Builder
@@ -30,7 +31,7 @@ public class ActivityLog {
     @Column(name = "ip_address")
     private String ipAddress;
 
-    @Column(name = "created_at")
+    @Column(name = DbConstant.DbCommon.CREATED_AT)
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 }

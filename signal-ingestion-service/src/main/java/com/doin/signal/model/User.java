@@ -1,12 +1,13 @@
 package com.doin.signal.model;
 
+import com.doin.signal.constant.db.DbConstant;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
+@Table(name = DbConstant.DbUser.TABLE_NAME)
 @Getter
 @Setter
 @Builder
@@ -31,7 +32,7 @@ public class User {
     @Builder.Default
     private String role = "USER";
 
-    @Column(name = "created_at")
+    @Column(name = DbConstant.DbCommon.CREATED_AT)
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 }
