@@ -54,7 +54,10 @@ services:
       retries: 5
 
   signal-ingestion:
-    build: ./signal-ingestion-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: signal-ingestion
     container_name: signal-ingestion
     ports:
       - "8080:8080"
@@ -67,6 +70,43 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      kafka:
+        condition: service_healthy
+    networks:
+      - trading-net
+
+  trade-execution:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: trade-execution
+    container_name: trade-execution
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/trading_db
+      SPRING_DATASOURCE_USERNAME: tusher
+      SPRING_DATASOURCE_PASSWORD: tusher
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+    depends_on:
+      postgres:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    networks:
+      - trading-net
+
+  notification:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: notification
+    container_name: notification
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+    depends_on:
       kafka:
         condition: service_healthy
     networks:
