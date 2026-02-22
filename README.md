@@ -27,7 +27,8 @@ broker account linking process.
 1. Java 21
 2. Spring Boot 3.5.11
 3. PostgreSQL
-4. Docker
+4. Kafka
+5. Docker
 
 # Run Project
 1. clone the repo:
