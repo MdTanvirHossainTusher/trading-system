@@ -335,6 +335,6 @@ VALUES
 ```
 Note: Postman API collection is added to the repo as `Trading Signal System.postman_collection.json`
 
-# Real time orders:
+# WebSocket Interaction:
 ![real_time_order_flow_through_websocket](real_time_order_flow.png)
 
