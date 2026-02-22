@@ -45,7 +45,3 @@ kafka:
 
 broker:
   execution-delay-ms: 5000
-
-logging:
-  level:
-    com.doin: DEBUG

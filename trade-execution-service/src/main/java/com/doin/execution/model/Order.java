@@ -1,5 +1,6 @@
 package com.doin.execution.model;
 
+import com.doin.execution.constant.db.DbConstant;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -7,7 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "orders")
+@Table(name = DbConstant.DbOrder.TABLE_NAME)
 @Getter
 @Setter
 @Builder
@@ -55,11 +56,11 @@ public class Order {
     @Column(name = "pnl", precision = 18, scale = 6)
     private BigDecimal pnl;
 
-    @Column(name = "created_at")
+    @Column(name = DbConstant.DbCommon.CREATED_AT)
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    @Column(name = "updated_at")
+    @Column(name = DbConstant.DbCommon.UPDATED_AT)
     @Builder.Default
     private LocalDateTime updatedAt = LocalDateTime.now();
 

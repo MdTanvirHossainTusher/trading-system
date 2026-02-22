@@ -18,8 +18,3 @@ spring:
 kafka:
   topics:
     order-updates: trading.orders.updates
-
-logging:
-  level:
-    com.doin: DEBUG
-    org.springframework.websocket: INFO
