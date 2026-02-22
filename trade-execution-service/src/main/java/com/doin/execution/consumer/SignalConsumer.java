@@ -48,12 +48,12 @@ public class SignalConsumer {
         }
         catch (SignalParseException e) {
             log.warn("Signal [{}] rejected due to parse error: {}", event.getSignalId(), e.getMessage());
-            throw new SignalParseException("Signal " + event.getSignalId() + " rejected due to parse error: {" + e.getMessage());
+//            throw new SignalParseException("Signal " + event.getSignalId() + " rejected due to parse error: {" + e.getMessage());
         }
         catch (Exception e) {
             log.error("Unexpected error processing signal [{}]: {}", event.getSignalId(), e.getMessage(), e);
-            throw new SignalParseException("Unexpected error processing signal " + event.getSignalId() +
-                    ": " + e.getMessage());
+//            throw new SignalParseException("Unexpected error processing signal " + event.getSignalId() +
+//                    ": " + e.getMessage());
 
         }
     }

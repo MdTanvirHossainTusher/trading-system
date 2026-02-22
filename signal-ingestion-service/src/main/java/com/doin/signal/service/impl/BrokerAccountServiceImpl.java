@@ -31,6 +31,13 @@ public class BrokerAccountServiceImpl implements BrokerAccountService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
+        brokerAccountRepository.findByUserId(userId).stream()
+                .filter(BrokerAccount::getActive)
+                .forEach(acc -> {
+                    acc.setActive(false);
+                    brokerAccountRepository.save(acc);
+                });
+
         BrokerAccount account = BrokerAccount.builder()
                 .user(user)
                 .accountName(request.getAccountName())
