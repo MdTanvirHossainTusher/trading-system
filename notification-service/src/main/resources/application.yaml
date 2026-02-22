@@ -1,3 +1,25 @@
+server:
+  port: ${SERVER_PORT:8082}
+
 spring:
   application:
-    name: signal
+    name: notification-service
+
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: notification-group
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.doin.*"
+
+kafka:
+  topics:
+    order-updates: trading.orders.updates
+
+logging:
+  level:
+    com.doin: DEBUG
+    org.springframework.websocket: INFO

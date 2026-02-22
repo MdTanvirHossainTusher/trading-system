@@ -1,4 +1,4 @@
-package com.doin.signal;
+package com.doin.notification;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
