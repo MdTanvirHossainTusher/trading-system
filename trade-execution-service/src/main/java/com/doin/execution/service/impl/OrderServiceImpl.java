@@ -1,6 +1,7 @@
 package com.doin.execution.service.impl;
 
 import com.doin.execution.model.Order;
+import com.doin.execution.payload.dto.OrderDto;
 import com.doin.execution.payload.dto.OrderUpdateEvent;
 import com.doin.execution.payload.dto.ParsedSignal;
 import com.doin.execution.repository.OrderRepository;
@@ -10,6 +11,9 @@ import com.doin.execution.service.OrderUpdatePublisher;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -136,5 +140,34 @@ public class OrderServiceImpl implements OrderService {
         orderUpdatePublisher.publish(event);
     }
 
+    public Page<OrderDto> getOrdersByUser(Long userId, int page, int size) {
+        return orderRepository
+                .findByUserId(userId, PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt")))
+                .map(this::toDto);
+    }
+
+    public OrderDto getOrderByIdForUser(String id, Long userId) {
+        Order order = orderRepository.findByIdAndUserId(id, userId).orElseThrow(() ->
+                new RuntimeException("Order not found: " + id));
+        return toDto(order);
+    }
+
+    public OrderDto toDto(Order o) {
+        return OrderDto.builder()
+                .id(o.getId())
+                .userId(o.getUserId())
+                .instrument(o.getInstrument())
+                .action(o.getAction())
+                .entryPrice(o.getEntryPrice())
+                .stopLoss(o.getStopLoss())
+                .takeProfit(o.getTakeProfit())
+                .status(o.getStatus())
+                .brokerOrderId(o.getBrokerOrderId())
+                .closedPrice(o.getClosedPrice())
+                .pnl(o.getPnl())
+                .createdAt(o.getCreatedAt() != null ? o.getCreatedAt().toString() : null)
+                .updatedAt(o.getUpdatedAt() != null ? o.getUpdatedAt().toString() : null)
+                .build();
+    }
 
 }
