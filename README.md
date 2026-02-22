@@ -333,6 +333,9 @@ VALUES
         "errors": null
     }
 ```
+12. Database query is in `docker/init.sql` file. Entity will create automatically
+when run `docker compose up --build`
+
 Note: Postman API collection is added to the repo as `Trading Signal System.postman_collection.json`
 
 # WebSocket Interaction:
