@@ -333,7 +333,8 @@ VALUES
         "errors": null
     }
 ```
-Note: Postman API collection is added to the repo as ``
+Note: Postman API collection is added to the repo as `Trading Signal System.postman_collection.json`
 
-
+# Real time orders:
+![real_time_order_flow_through_websocket](real_time_order_flow.png)
 
