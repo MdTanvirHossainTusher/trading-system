@@ -20,7 +20,7 @@
     <modules>
         <module>signal-ingestion-service</module>
         <module>trade-execution-service</module>
-<!--        <module>notification-service</module>-->
+        <module>notification-service</module>
     </modules>
 
     <properties>

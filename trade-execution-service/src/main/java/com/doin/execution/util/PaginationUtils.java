@@ -1,7 +1,7 @@
-package com.sisimpur.library.utils;
+package com.doin.execution.util;
 
-import com.sisimpur.library.payload.common.response.PaginatedResponse;
-import com.sisimpur.library.payload.common.response.PaginationMetadata;
+import com.doin.execution.payload.response.PaginatedResponse;
+import com.doin.execution.payload.response.PaginationMetadata;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

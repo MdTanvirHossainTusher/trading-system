@@ -1,4 +1,4 @@
-package com.doin.signal.payload.common.response;
+package com.doin.execution.payload.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.doin.signal.constant;
+package com.doin.execution.constant;
 
 public interface ErrorTypes {
     String VALIDATION_ERROR = "VALIDATION_ERROR";

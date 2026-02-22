@@ -1,4 +1,4 @@
-package com.doin.signal.constant.db;
+package com.doin.execution.constant.db;
 
 public class DbConstant {
 
