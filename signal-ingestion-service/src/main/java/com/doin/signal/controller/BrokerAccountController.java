@@ -8,10 +8,7 @@ import com.doin.signal.service.BrokerAccountService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,14 +21,13 @@ public class BrokerAccountController {
     @PostMapping("/accounts")
     public ResponseEntity<ApiResponse<BrokerAccountDto>> linkAccount(
             @Valid @RequestBody BrokerAccountRequest request) {
-        Long userId = 1L;
+        Long userId = request.getUserId();
         BrokerAccountDto dto = brokerAccountService.linkAccount(userId, request);
         return ResponseBuilder.created(dto, "Broker account linked successfully");
     }
 
     @GetMapping("/accounts")
-    public ResponseEntity<ApiResponse<List<BrokerAccountDto>>> getAccounts() {
-        Long userId = 1L;
+    public ResponseEntity<ApiResponse<List<BrokerAccountDto>>> getAccounts(@RequestParam Long userId) {
         List<BrokerAccountDto> accounts = brokerAccountService.getAccounts(userId);
         return ResponseBuilder.ok(accounts);
     }

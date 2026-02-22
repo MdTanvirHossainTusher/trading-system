@@ -1,16 +1,18 @@
 package com.doin.signal.payload.request;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class BrokerAccountRequest {
+
+    @NotNull(message = "UserId is required")
+    private Long userId;
+
     @NotBlank(message = "Account name is required")
     private String accountName;
 

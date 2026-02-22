@@ -26,7 +26,7 @@ public class WebhookController {
             @Valid @RequestBody WebhookRequest request,
             HttpServletRequest httpRequest) {
 
-        Long userId = 1L;
+        Long userId = request.getUserId();
         WebhookResponse response = webhookService.receiveSignal(userId, request, httpRequest.getRemoteAddr());
         return ResponseBuilder.ok(response, "Signal queued for processing");
     }
