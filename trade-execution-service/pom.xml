@@ -10,9 +10,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>signal-ingestion-service</artifactId>
-    <name>signal-ingestion-service</name>
-    <description>Signal Ingestion Service</description>
+    <artifactId>trade-execution-service</artifactId>
+    <name>trade-execution-service</name>
+    <description>Trade Execution Service</description>
 
     <dependencies>
         <dependency>
