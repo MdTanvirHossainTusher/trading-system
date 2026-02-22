@@ -1,6 +1,11 @@
+server:
+  port: ${SERVER_PORT:8081}
+  servlet:
+    context-path: /api/v1
+
 spring:
   application:
-    name: signal-ingestion-service
+    name: trade-execution-service
 
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/trading_db}
@@ -15,13 +20,18 @@ spring:
     database: postgresql
     hibernate:
       ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
+    show-sql: false
 
   kafka:
     bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: trade-execution-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.doin.*"
+        spring.json.value.default.type: com.doin.execution.payload.dto.RawSignalEvent
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -31,18 +41,11 @@ spring:
 kafka:
   topics:
     raw-signals: trading.signals.raw
+    order-updates: trading.orders.updates
 
-jwt:
-  secret: ${JWT_SECRET:dffffffffgdasrere432523432SWerewtrrqwe213124325rsdftgggggg123455}
-  expiration-ms: 86400000        # 24 hours
-  refresh-expiration-ms: 604800000  # 7 days
+broker:
+  execution-delay-ms: 5000
 
-#logging:
-#  level:
-#    com.doin: DEBUG
-#    org.springframework.security: INFO
-
-server:
-  port: ${SERVER_PORT:8080}
-  servlet:
-    context-path: /api/v1
+logging:
+  level:
+    com.doin: DEBUG
